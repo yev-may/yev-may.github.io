@@ -1,7 +1,7 @@
 <script setup>
-import BoxList from './components/box/BoxList.vue';
+import NewCardForm from './components/card/NewCardForm.vue';
 </script>
 
 <template>
-    <BoxList />
+    <NewCardForm />
 </template>
