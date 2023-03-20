@@ -1,7 +1,7 @@
 <script setup>
-import NewCardForm from './components/card/NewCardForm.vue';
+import Main from './components/Main.vue';
 </script>
 
 <template>
-    <NewCardForm />
+    <Main />
 </template>

@@ -6,3 +6,7 @@ export function saveCard(card, level) {
     cards.push(card);
     localStorage.setItem(level, JSON.stringify(cards));
 }
+
+export function getCardsByLevel(level) {
+    return JSON.parse(localStorage.getItem(level));
+}
