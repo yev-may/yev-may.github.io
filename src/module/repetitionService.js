@@ -15,3 +15,12 @@ export function getLastRepetitionDate() {
     return savedDate != null ?
         savedDate : 'Never';
 }
+
+export function getCardQuantityByLevelMap() {
+    const result = new Map();
+    for(let i = 0; i <= MAX_REPETITION_LEVEL; ++i) {
+        result.set(i, getCardsByLevel(i).length);
+    }
+    console.log(result);
+    return result;
+}
