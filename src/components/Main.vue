@@ -21,9 +21,9 @@ import { computed } from 'vue';
                </tr>
             </thead>
             <tbody>
-                <tr v-for="(value, key) in getCardQuantityByLevelMap()">
+                <tr v-for="[value, key] in getCardQuantityByLevelMap()">
                     <td>{{ key }}</td>
-                    <td>{{ value[1] }}</td>
+                    <td>{{ value }}</td>
                 </tr>
             </tbody>
         </table>
