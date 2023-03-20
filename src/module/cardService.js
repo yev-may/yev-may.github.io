@@ -1,12 +1,11 @@
 
 export function saveCard(card, level) {
-    let cards = localStorage.getItem(level);
-    cards = cards != null 
-        ? JSON.parse(cards)  : [];
+    const cards = getCardsByLevel(level);
     cards.push(card);
     localStorage.setItem(level, JSON.stringify(cards));
 }
 
 export function getCardsByLevel(level) {
-    return JSON.parse(localStorage.getItem(level));
+    const cards = localStorage.getItem(level);
+    return cards != null ? JSON.parse(cards) : [];
 }
