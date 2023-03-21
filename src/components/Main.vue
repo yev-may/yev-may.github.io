@@ -1,7 +1,6 @@
 <script setup>
 import NewCardForm from './card/NewCardForm.vue';
 import { getLastRepetitionDate, getCardToRepeatToday, getCardQuantityByLevelMap } from './../module/repetitionService';
-import { computed } from 'vue';
 
 </script>
 <template>
@@ -21,7 +20,7 @@ import { computed } from 'vue';
                </tr>
             </thead>
             <tbody>
-                <tr v-for="[value, key] in getCardQuantityByLevelMap()">
+                <tr v-for="[key, value] in getCardQuantityByLevelMap()">
                     <td>{{ key }}</td>
                     <td>{{ value }}</td>
                 </tr>
