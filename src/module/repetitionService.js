@@ -2,6 +2,20 @@ import { cardService } from './cardService';
 
 const MAX_REPETITION_LEVEL = 7;
 
+export function getLevelToRepeat() {
+    const savedLevel = getLastRepetitionLevel();
+    const saveDate = getLastRepetitionDate() ?? new Date();
+    return datesAreOnSameDay(new Date(), saveDate)
+        ? savedLevel
+        : savedLevel + 1;
+}
+
+function datesAreOnSameDay (first, second) {
+    return first.getFullYear() === second.getFullYear()
+        && first.getMonth() === second.getMonth()
+        && first.getDate() === second.getDate();
+}
+
 export function getCardToRepeatToday() {
     return cardService.getCardsByLevel(0);
 }
@@ -10,10 +24,13 @@ export function updateLastRepetitionDate() {
     localStorage.setItem('lastRepetitionDate', new Date());
 }
 
+export function getLastRepetitionLevel() {
+    const savedLevel = localStorage.getItem('lastRepetitionLevel');
+    return savedLevel ?? 0
+}
+
 export function getLastRepetitionDate() {
-    const savedDate = localStorage.getItem('lastRepetitionDate');
-    return savedDate != null ?
-        savedDate : 'Never';
+    return localStorage.getItem('lastRepetitionDate');;
 }
 
 export function getCardQuantityByLevelMap() {

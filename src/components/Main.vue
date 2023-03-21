@@ -1,11 +1,13 @@
 <script setup>
 import { reactive } from 'vue';
 import { cardService } from './../module/cardService';
-import { getLastRepetitionDate, getCardToRepeatToday, getCardQuantityByLevelMap } from './../module/repetitionService';
+import { getLastRepetitionDate, getCardToRepeatToday, getCardQuantityByLevelMap, getLevelToRepeat } from './../module/repetitionService';
 
 let context = reactive( {
-    cardQuantityByLevelMap : getCardQuantityByLevelMap()
+    cardQuantityByLevelMap: getCardQuantityByLevelMap(),
+    levelToRepeat: getLevelToRepeat()
 });
+
 const cardForm = reactive({
     question: "",
     answer: "",
@@ -24,6 +26,7 @@ function update() {
 </script>
 <template>
     <div>
+        <p>Current repetition leve: {{ context.levelToRepeat }}</p>
         <p>Card to repeat today: {{ getCardToRepeatToday().length }}</p>
     </div>
     <div>
