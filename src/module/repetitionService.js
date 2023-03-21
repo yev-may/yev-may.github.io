@@ -1,9 +1,9 @@
-import { getCardsByLevel } from './cardService';
+import { cardService } from './cardService';
 
 const MAX_REPETITION_LEVEL = 7;
 
 export function getCardToRepeatToday() {
-    return getCardsByLevel(0);
+    return cardService.getCardsByLevel(0);
 }
 
 export function updateLastRepetitionDate() {
@@ -19,7 +19,7 @@ export function getLastRepetitionDate() {
 export function getCardQuantityByLevelMap() {
     const result = new Map();
     for(let i = 0; i <= MAX_REPETITION_LEVEL; ++i) {
-        result.set(i, getCardsByLevel(i).length);
+        result.set(i, cardService.getCardsByLevel(i).length);
     }
     console.log(result);
     return result;
