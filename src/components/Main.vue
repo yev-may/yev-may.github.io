@@ -1,11 +1,11 @@
 <script setup>
 import { reactive } from 'vue';
 import { cardService } from './../module/cardService';
-import { getLastRepetitionDate, getCardQuantityByLevelMap, getLevelToRepeat,
+import { getLastRepetitionDate, getLevelToRepeat,
         updateLastRepetitionDate, updateLastRepetitionLevel } from './../module/repetitionService';
 
 let context = reactive({
-    cardQuantityByLevelMap: getCardQuantityByLevelMap(),
+    cardQuantityByLevelMap: cardService.getCardQuantityByLevelMap(),
     levelToRepeat: getLevelToRepeat(),
     cardsToRepeat: cardService.getCardsByLevel(getLevelToRepeat()),
     cardToRepeat: cardService.getCardsByLevel(getLevelToRepeat())[0],
@@ -30,7 +30,7 @@ function submitAnswer(levelDelta) {
 }
 
 function update() {
-    context.cardQuantityByLevelMap = getCardQuantityByLevelMap();
+    context.cardQuantityByLevelMap = cardService.getCardQuantityByLevelMap();
     context.answerHidden = true;
     context.cardsToRepeat = cardService.getCardsByLevel(getLevelToRepeat());
     context.cardToRepeat =  context.cardsToRepeat[0];

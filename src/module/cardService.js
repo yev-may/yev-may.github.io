@@ -1,3 +1,5 @@
+const MAX_REPETITION_LEVEL = 7;
+
 export const cardService = {
 
     moveCardToLevelDelta(card, currentLevel, levelDelta) {
@@ -17,5 +19,14 @@ export const cardService = {
     getCardsByLevel(level) {
         const cards = localStorage.getItem(level);
         return cards != null ? JSON.parse(cards) : [];
+    },
+
+    getCardQuantityByLevelMap() {
+        const result = new Map();
+        for(let i = 0; i <= MAX_REPETITION_LEVEL; ++i) {
+            result.set(i, this.getCardsByLevel(i).length);
+        }
+        console.log(result);
+        return result;
     }
 }

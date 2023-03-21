@@ -1,7 +1,5 @@
 import { cardService } from './cardService';
 
-const MAX_REPETITION_LEVEL = 7;
-
 export function getLevelToRepeat() {
     const savedLevel = getLastRepetitionLevel();
     const saveDate = getLastRepetitionDate() ?? new Date();
@@ -31,13 +29,4 @@ export function getLastRepetitionDate() {
 
 export function updateLastRepetitionDate() {
     localStorage.setItem('lastRepetitionDate', JSON.stringify(new Date()));
-}
-
-export function getCardQuantityByLevelMap() {
-    const result = new Map();
-    for(let i = 0; i <= MAX_REPETITION_LEVEL; ++i) {
-        result.set(i, cardService.getCardsByLevel(i).length);
-    }
-    console.log(result);
-    return result;
 }
