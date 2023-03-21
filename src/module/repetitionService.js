@@ -16,10 +16,6 @@ function datesAreOnSameDay (first, second) {
         && first.getDate() === second.getDate();
 }
 
-export function getCardToRepeatToday() {
-    return cardService.getCardsByLevel(0);
-}
-
 export function updateLastRepetitionDate() {
     localStorage.setItem('lastRepetitionDate', new Date());
 }
