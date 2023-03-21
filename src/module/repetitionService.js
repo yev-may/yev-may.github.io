@@ -2,7 +2,7 @@ export function getLevelToRepeat() {
     const savedLevel = getLastRepetitionLevel();
     const saveDate = getLastRepetitionDate() ?? new Date();
     return datesAreOnSameDay(new Date(), saveDate)
-        ? savedLevel : savedLevel + 1;
+        ? +savedLevel : +savedLevel + 1;
 }
 
 function datesAreOnSameDay(first, second) {
