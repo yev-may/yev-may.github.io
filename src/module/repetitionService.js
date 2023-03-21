@@ -1,11 +1,8 @@
-import { cardService } from './cardService';
-
 export function getLevelToRepeat() {
     const savedLevel = getLastRepetitionLevel();
     const saveDate = getLastRepetitionDate() ?? new Date();
     return datesAreOnSameDay(new Date(), saveDate)
-        ? savedLevel
-        : savedLevel + 1;
+        ? savedLevel : savedLevel + 1;
 }
 
 function datesAreOnSameDay(first, second) {
@@ -15,8 +12,7 @@ function datesAreOnSameDay(first, second) {
 }
 
 export function getLastRepetitionLevel() {
-    const savedLevel = localStorage.getItem('lastRepetitionLevel');
-    return savedLevel ?? 0
+    return localStorage.getItem('lastRepetitionLevel') ?? 0;
 }
 
 export function updateLastRepetitionLevel(level) {
