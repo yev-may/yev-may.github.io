@@ -1,7 +1,10 @@
+const MAX_REPETITION_LEVEL = 7;
+const MIN_REPETITION_LEVEL = 1;
+
 export function getLevelToRepeat() {
     const savedLevel = getLastRepetitionLevel();
-    const saveDate = getLastRepetitionDate() ?? new Date();
-    return datesAreOnSameDay(new Date(), saveDate)
+    const savedDate = getLastRepetitionDate() ?? new Date();
+    return datesAreOnSameDay(new Date(), savedDate)
         ? +savedLevel : +savedLevel + 1;
 }
 
@@ -12,10 +15,11 @@ function datesAreOnSameDay(first, second) {
 }
 
 export function getLastRepetitionLevel() {
-    return localStorage.getItem('lastRepetitionLevel') ?? 0;
+    return localStorage.getItem('lastRepetitionLevel') ?? MIN_REPETITION_LEVEL;
 }
 
 export function updateLastRepetitionLevel(level) {
+    level = level > MAX_REPETITION_LEVEL ? MIN_REPETITION_LEVEL : level;
     localStorage.setItem('lastRepetitionLevel', level);
 }
 
