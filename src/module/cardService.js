@@ -11,11 +11,18 @@ export const cardService = {
     },
 
     saveCard(card, level) {
+        level = level >= MAX_REPETITION_LEVEL ? level : 0;
         const cards = this.getCardsByLevel(level);
         cards.push(card);
         localStorage.setItem(level, JSON.stringify(cards));
     },
     
+    getCardsToRepeat(level) {
+        const newCards = this.getCardsByLevel(0);
+        const cardsOnLevel = this.getCardsByLevel(level);
+        return newCards.concat(cardsOnLevel);
+    },
+
     getCardsByLevel(level) {
         const cards = localStorage.getItem(level);
         return cards != null ? JSON.parse(cards) : [];

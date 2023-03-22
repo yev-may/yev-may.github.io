@@ -7,8 +7,8 @@ import { getLastRepetitionDate, getLevelToRepeat,
 let context = reactive({
     cardQuantityByLevelMap: cardService.getCardQuantityByLevelMap(),
     levelToRepeat: getLevelToRepeat(),
-    cardsToRepeat: cardService.getCardsByLevel(getLevelToRepeat()),
-    cardToRepeat: cardService.getCardsByLevel(getLevelToRepeat())[0],
+    cardsToRepeat: cardService.getCardsToRepeat(getLevelToRepeat()),
+    cardToRepeat: cardService.getCardsToRepeat(getLevelToRepeat())[0],
     answerHidden: true
 });
 
@@ -32,7 +32,7 @@ function submitAnswer(levelDelta) {
 function update() {
     context.cardQuantityByLevelMap = cardService.getCardQuantityByLevelMap();
     context.answerHidden = true;
-    context.cardsToRepeat = cardService.getCardsByLevel(getLevelToRepeat());
+    context.cardsToRepeat = cardService.getCardsToRepeat(getLevelToRepeat());
     context.cardToRepeat =  context.cardsToRepeat[0];
     if(context.cardToRepeat == undefined) {
         updateLastRepetitionDate();
