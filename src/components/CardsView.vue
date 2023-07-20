@@ -9,6 +9,7 @@ const editCardForm = reactive({
 })
 
 function selectCardToEdit(card) {
+  editCardForm.id = card.id;
   editCardForm.question = card.question;
   editCardForm.answer = card.answer;
 }
@@ -28,7 +29,7 @@ function selectCardToEdit(card) {
         <td>{{ card.question }}</td>
         <td>{{ card.answer }}</td>
         <td><button @click="selectCardToEdit(card)">Edit</button></td>
-        <td><button @click="deleteCard(card.question)">Delete</button></td>
+        <td><button @click="deleteCard(card.id)">Delete</button></td>
       </tr>
     </table>
 

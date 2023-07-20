@@ -1,18 +1,20 @@
-export function saveCard(cardForm) {
-    cardForm.creationDate = new Date();
+export function saveCard(card) {
+    card.id = generateCardId();
+    card.creationDate = new Date();
+
     const cards = getCards();
-    cards.push(cardForm)
+    cards.push(card)
     saveCards(cards);
 }
 
 export function updateCard(updateCard) {
-    let cards = getCards().filter(card => card.question !== updateCard.question);
+    let cards = getCards().filter(card => card.id !== updateCard.id);
     cards.push(updateCard);
     saveCards(cards);
 }
 
-export function deleteCard(question) {
-    const cards = getCards().filter(card => card.question !== question);
+export function deleteCard(cardId) {
+    const cards = getCards().filter(card => card.id !== cardId);
     saveCards(cards);
 }
 
@@ -23,4 +25,11 @@ export function getCards() {
 
 export function saveCards(cards) {
     return localStorage.setItem("cards", JSON.stringify(cards));
+}
+
+function generateCardId() {
+    let lastCardId = localStorage.getItem("lastCardId")
+    let newCarId = lastCardId ? +lastCardId + 1 : 0;
+    localStorage.setItem("lastCardId", newCarId);
+    return newCarId;
 }
