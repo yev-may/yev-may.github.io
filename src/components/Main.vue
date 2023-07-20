@@ -8,19 +8,44 @@
 
     <button @click="saveCard()">Add</button>
   </div>
+
+  <div class="cards_view">
+    <p>Cards:</p>
+    <div class="card_view" v-for="card in cards">
+      {{ card.question }}
+      <button @click="deleteCard(card.question)">Delete</button>
+    </div>
+  </div>
+
 </template>
 <script setup>
-  import {reactive} from "vue";
+import {reactive, ref} from "vue";
+
+  const cards = ref(getCards());
 
   const cardForm = reactive({
-    question: "",
-    answer: ""
+    question: "question",
+    answer: "answer"
   });
 
+  function updateCards() {
+    cards.value = getCards();
+  }
+
   function saveCard() {
+    cardForm.creationDate = new Date();
     const cards = getCards();
     cards.push(cardForm)
     saveCards(cards);
+
+    updateCards();
+  }
+
+  function deleteCard(question) {
+    const cards = getCards().filter(card => card.question !== question);
+    saveCards(cards);
+
+    updateCards();
   }
 
   function getCards() {
