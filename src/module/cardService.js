@@ -5,6 +5,12 @@ export function saveCard(cardForm) {
     saveCards(cards);
 }
 
+export function updateCard(updateCard) {
+    let cards = getCards().filter(card => card.question !== updateCard.question);
+    cards.push(updateCard);
+    saveCards(cards);
+}
+
 export function deleteCard(question) {
     const cards = getCards().filter(card => card.question !== question);
     saveCards(cards);
