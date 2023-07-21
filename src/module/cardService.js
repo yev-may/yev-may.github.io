@@ -1,10 +1,20 @@
+import {getSettings} from "./settingsService";
+
 export function saveCard(card) {
     card.id = generateCardId();
     card.creationDate = new Date();
+    card.level = 0;
+    card.nextRepetitionDate = getFirstNextRepetitionDate();
 
     const cards = getCards();
     cards.push(card)
     saveCards(cards);
+}
+
+function getFirstNextRepetitionDate() {
+    const date = new Date();
+    date.setMinutes(date.getMinutes() + +getSettings()[0]);
+    return date;
 }
 
 export function updateCard(updateCard) {
@@ -16,6 +26,10 @@ export function updateCard(updateCard) {
 export function deleteCard(cardId) {
     const cards = getCards().filter(card => card.id !== cardId);
     saveCards(cards);
+}
+
+export function getCard(cardId) {
+    return getCards().find(card => card.id === cardId);
 }
 
 export function getCards() {
