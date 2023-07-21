@@ -4,6 +4,7 @@ import {deleteCard, getCards, updateCard} from "../module/cardService";
 
 const cards = ref(getCards());
 const editCardForm = reactive({
+  id: null,
   question: "",
   answer: ""
 })
@@ -13,6 +14,11 @@ function selectCardToEdit(card) {
   editCardForm.question = card.question;
   editCardForm.answer = card.answer;
 }
+
+function cancelCardUpdate() {
+  editCardForm.id = null;
+}
+
 </script>
 
 <template>
@@ -33,7 +39,7 @@ function selectCardToEdit(card) {
       </tr>
     </table>
 
-    <div class="edit_form" v-if="editCardForm">
+    <div class="edit_form" v-if="editCardForm.id">
       <p>Question:</p>
       <input v-model="editCardForm.question">
 
@@ -41,6 +47,7 @@ function selectCardToEdit(card) {
       <input v-model="editCardForm.answer">
 
       <button @click="updateCard(editCardForm)">Save</button>
+      <button @click="cancelCardUpdate()">Cancel</button>
     </div>
   </div>
 </template>
