@@ -19,7 +19,10 @@ function updateCardToRepeat() {
   }
 }
 
-onMounted(() => updateCardToRepeat());
+onMounted(() => {
+  updateCardToRepeat()
+  console.log("Rep component created!")
+});
 </script>
 
 <template>

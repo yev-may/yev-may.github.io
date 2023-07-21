@@ -1,5 +1,6 @@
 import {getCard, getCards, updateCard} from "./cardService";
 import {getSettings} from "./settingsService";
+import {moveCardToArchive} from "./cardArchiveService";
 
 export function getCardToRepeat() {
     const now = JSON.parse(JSON.stringify(new Date()));
@@ -9,9 +10,15 @@ export function getCardToRepeat() {
 
 export function submitRightAnswer(cardId) {
     const card = getCard(cardId);
-    card.nextRepetitionDate = getNextRepetitionDate(card.level);
-    card.level = card.level + 1;
-    updateCard(card);
+    const nextLevel = card.level + 1;
+    const nextLevelDelay = getDelayForLevel(nextLevel);
+    if(nextLevelDelay) {
+        card.nextRepetitionDate = getNextRepetitionDate(card.level);
+        card.level = nextLevel;
+        updateCard(card);
+    } else {
+        moveCardToArchive(card);
+    }
 }
 
 export function submitWrongAnswer(cardId) {
