@@ -18,8 +18,18 @@ function getFirstNextRepetitionDate() {
 }
 
 export function updateCard(updateCard) {
-    let cards = getCards().filter(card => card.id !== updateCard.id);
-    cards.push(updateCard);
+    let cards = getCards();
+    let foundCard = cards.find(card => card.id === updateCard.id);
+    foundCard.question = updateCard.question;
+    foundCard.answer = updateCard.answer;
+    saveCards(cards);
+}
+
+export function updateCardRepetitionInfo(updateCard) {
+    const cards = getCards();
+    const foundCard = cards.find(card => card.id === updateCard.id);
+    foundCard.level = updateCard.level;
+    foundCard.nextRepetitionDate = updateCard.nextRepetitionDate;
     saveCards(cards);
 }
 
