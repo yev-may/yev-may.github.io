@@ -2,7 +2,7 @@
 import {reactive, ref} from "vue";
 import {deleteCard, getCards, updateCard} from "../module/cardService";
 
-const cards = ref(getCards());
+const cards = ref(getCards().sort((c1, c2) => c1.creationDate - c2.creationDate));
 const editCardForm = reactive({
   id: null,
   question: "",
@@ -19,6 +19,19 @@ function cancelCardUpdate() {
   editCardForm.id = null;
 }
 
+function updateCards() {
+  cards.value = getCards();
+}
+
+function confirmCardUpdate() {
+  updateCard(editCardForm);
+  updateCards()
+}
+
+function confirmCardRemoving(cardId) {
+  deleteCard(cardId);
+  updateCards()
+}
 </script>
 
 <template>
@@ -35,7 +48,7 @@ function cancelCardUpdate() {
         <td>{{ card.question }}</td>
         <td>{{ card.answer }}</td>
         <td><button @click="selectCardToEdit(card)">Edit</button></td>
-        <td><button @click="deleteCard(card.id)">Delete</button></td>
+        <td><button @click="confirmCardRemoving(card.id)">Delete</button></td>
       </tr>
     </table>
 
@@ -46,7 +59,7 @@ function cancelCardUpdate() {
       <p>Answer:</p>
       <input v-model="editCardForm.answer">
 
-      <button @click="updateCard(editCardForm)">Save</button>
+      <button @click="confirmCardUpdate()">Save</button>
       <button @click="cancelCardUpdate()">Cancel</button>
     </div>
   </div>

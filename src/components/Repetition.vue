@@ -16,38 +16,41 @@ function updateCardToRepeat() {
     cardToRepeat.id = foundCard.id;
     cardToRepeat.question = foundCard.question;
     cardToRepeat.answer = foundCard.answer;
+  } else {
+    cardToRepeat.id = null;
   }
 }
 
-onMounted(() => {
-  updateCardToRepeat()
-  console.log("Rep component created!")
-});
+function submitAnswer(isRight) {
+  isRight ? submitRightAnswer(cardToRepeat.id) : submitWrongAnswer(cardToRepeat.id);
+  updateCardToRepeat();
+}
+
+onMounted(() => updateCardToRepeat());
 </script>
 
 <template>
-  <p>Card to repeat</p>
+  <p>Repetition</p>
 
-  <div class="repetition_view">
+  <div v-if="cardToRepeat.id">
+    <p>{{ cardToRepeat.question }}</p>
 
-    <div class="card">
-      <div class="card_question">
-        <p>{{ cardToRepeat.question }}</p>
-      </div>
-
-      <div class="card_shown-answer_button" v-if="!answerShown">
-        <button @click="answerShown = true">Show answer</button>
-      </div>
-
-      <div class="card_answer" v-if="answerShown">
-        <p>{{ cardToRepeat.answer }}</p>
-      </div>
-
-      <div class="cars_submit-answer-result" v-if="answerShown">
-        <button @click="submitRightAnswer(cardToRepeat.id)">Right</button>
-        <button @click="submitWrongAnswer(cardToRepeat.id)">Wrong</button>
-      </div>
+    <div v-if="!answerShown">
+      <button @click="answerShown = true">Show answer</button>
     </div>
+
+    <div v-if="answerShown">
+      <p>{{ cardToRepeat.answer }}</p>
+    </div>
+
+    <div v-if="answerShown">
+      <button @click="submitAnswer(true)">Right</button>
+      <button @click="submitAnswer(false)">Wrong</button>
+    </div>
+  </div>
+
+  <div v-if="!cardToRepeat.id">
+    <p>No card to repeat</p>
   </div>
 </template>
 

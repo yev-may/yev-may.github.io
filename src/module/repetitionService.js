@@ -1,4 +1,4 @@
-import {getCard, getCards, updateCard} from "./cardService";
+import {getCard, getCards, updateCardRepetitionInfo} from "./cardService";
 import {getSettings} from "./settingsService";
 import {moveCardToArchive} from "./cardArchiveService";
 
@@ -15,7 +15,7 @@ export function submitRightAnswer(cardId) {
     if(nextLevelDelay) {
         card.nextRepetitionDate = getNextRepetitionDate(card.level);
         card.level = nextLevel;
-        updateCard(card);
+        updateCardRepetitionInfo(card);
     } else {
         moveCardToArchive(card);
     }
@@ -25,7 +25,7 @@ export function submitWrongAnswer(cardId) {
     const card = getCard(cardId);
     card.level = 0
     card.nextRepetitionDate = getNextRepetitionDate(card.level);
-    updateCard(card);
+    updateCardRepetitionInfo(card);
 }
 
 function getNextRepetitionDate(level) {
