@@ -6,6 +6,11 @@ const cardForm = reactive({
   question: "question",
   answer: "answer"
 });
+
+function confirmCardCreation() {
+  saveCard(cardForm);
+  alert("Card created");
+}
 </script>
 
 <template>
@@ -16,7 +21,7 @@ const cardForm = reactive({
     <p>Answer:</p>
     <input v-model="cardForm.answer">
 
-    <button @click="saveCard(cardForm)">Add</button>
+    <button @click="confirmCardCreation()">Add</button>
   </div>
 </template>
 
