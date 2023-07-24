@@ -32,7 +32,9 @@ onMounted(() => updateCardToRepeat());
 <template>
   <div class="view">
     <div class="view_container">
-      <p>Repetition</p>
+      <div class="info-alert" v-if="!cardToRepeat.id">
+        <p>No cards to repeat</p>
+      </div>
 
       <div v-if="cardToRepeat.id">
         <p>{{ cardToRepeat.question }}</p>
@@ -49,10 +51,6 @@ onMounted(() => updateCardToRepeat());
           <button @click="submitAnswer(true)">Right</button>
           <button @click="submitAnswer(false)">Wrong</button>
         </div>
-      </div>
-
-      <div v-if="!cardToRepeat.id">
-        <p>No card to repeat</p>
       </div>
     </div>
   </div>

@@ -32,4 +32,12 @@ html, body, #app {
   width: 500px;
   padding: 10px;
 }
+
+
+.info-alert {
+  width: 100%;
+  border: 1px solid black;
+  padding: 15px 0;
+  text-align: center;
+}
 </style>
