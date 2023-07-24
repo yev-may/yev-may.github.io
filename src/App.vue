@@ -21,6 +21,11 @@ html, body, #app {
   height: 100%;
 }
 
+input {
+  font-size: 18px;
+  border: 1px solid black;
+}
+
 textarea {
   width: 100%;
   padding: 10px;

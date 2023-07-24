@@ -1,5 +1,5 @@
 import {getCard, getCards, updateCardRepetitionInfo} from "./cardService";
-import {getSettings} from "./settingsService";
+import {getDelayForLevel} from "./settingsService";
 import {moveCardToArchive} from "./cardArchiveService";
 
 export function getCardToRepeat() {
@@ -34,9 +34,3 @@ function getNextRepetitionDate(level) {
     date.setMinutes(date.getMinutes() + delayMinutes );
     return date;
 }
-
-function getDelayForLevel(level) {
-    return +getSettings()[level];
-}
-
-

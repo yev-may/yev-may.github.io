@@ -4,12 +4,14 @@
       <button @click="activateTab('repetition')">Repetition</button>
       <button @click="activateTab('addCard')">Add Card</button>
       <button @click="activateTab( 'collection')">Collection</button>
+      <button @click="activateTab( 'settings')">Settings</button>
     </div>
   </header>
   <main>
     <Repetition v-if="isActiveTab('repetition')"/>
     <CardForm v-if="isActiveTab('addCard')"/>
     <CardsView v-if="isActiveTab('collection')"/>
+    <Settings v-if="isActiveTab('settings')"/>
   </main>
 </template>
 
@@ -17,6 +19,7 @@
 import CardForm from "./CardForm.vue";
 import CardsView from "./CardsView.vue";
 import Repetition from "./Repetition.vue";
+import Settings from "./Settings.vue";
 import {ref} from "vue";
 
 const activeTap = ref("repetition");
