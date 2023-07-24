@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <header>
-      <div class="header_container">
-        <button @click="activateTab('repetition')">Repetition</button>
-        <button @click="activateTab('addCard')">Add Card</button>
-        <button @click="activateTab( 'collection')">Collection</button>
-      </div>
-    </header>
-  </div>
-  <div>
+  <header>
+    <div class="header_container">
+      <button @click="activateTab('repetition')">Repetition</button>
+      <button @click="activateTab('addCard')">Add Card</button>
+      <button @click="activateTab( 'collection')">Collection</button>
+    </div>
+  </header>
+  <main>
     <Repetition v-if="isActiveTab('repetition')"/>
     <CardForm v-if="isActiveTab('addCard')"/>
     <CardsView v-if="isActiveTab('collection')"/>
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -33,11 +31,14 @@ function isActiveTab(tabName) {
 </script>
 
 <style>
-body {
-  margin: 0;
-  font-size: 18px;
-  font-family: Arial, serif;
+#app {
+  display: flex;
+  flex-direction: column;
 }
+main {
+  flex-grow: 1;
+}
+
 header {
   background-color: black;
   height: 60px;

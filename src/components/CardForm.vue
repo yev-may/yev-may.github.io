@@ -14,14 +14,16 @@ function confirmCardCreation() {
 </script>
 
 <template>
-  <div class="card_form">
-    <p>Question:</p>
-    <input v-model="cardForm.question">
+  <div class="view">
+    <div class="view_container">
+      <p>Question:</p>
+      <input v-model="cardForm.question">
 
-    <p>Answer:</p>
-    <input v-model="cardForm.answer">
+      <p>Answer:</p>
+      <input v-model="cardForm.answer">
 
-    <button @click="confirmCardCreation()">Add</button>
+      <button @click="confirmCardCreation()">Add</button>
+    </div>
   </div>
 </template>
 

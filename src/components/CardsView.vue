@@ -35,32 +35,36 @@ function confirmCardRemoving(cardId) {
 </script>
 
 <template>
-  <div class="cards_view">
-    <p>Cards:</p>
-    <table>
-      <tr>
-        <th>Question</th>
-        <th>Answer</th>
-        <th>Save</th>
-        <th>Delete</th>
-      </tr>
-      <tr v-for="card in cards">
-        <td>{{ card.question }}</td>
-        <td>{{ card.answer }}</td>
-        <td><button @click="selectCardToEdit(card)">Edit</button></td>
-        <td><button @click="confirmCardRemoving(card.id)">Delete</button></td>
-      </tr>
-    </table>
+  <div class="view">
+    <div class="view_container">
 
-    <div class="edit_form" v-if="editCardForm.id">
-      <p>Question:</p>
-      <input v-model="editCardForm.question">
+        <p>Cards:</p>
+        <table>
+          <tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Save</th>
+            <th>Delete</th>
+          </tr>
+          <tr v-for="card in cards">
+            <td>{{ card.question }}</td>
+            <td>{{ card.answer }}</td>
+            <td><button @click="selectCardToEdit(card)">Edit</button></td>
+            <td><button @click="confirmCardRemoving(card.id)">Delete</button></td>
+          </tr>
+        </table>
 
-      <p>Answer:</p>
-      <input v-model="editCardForm.answer">
+        <div class="edit_form" v-if="editCardForm.id">
+          <p>Question:</p>
+          <input v-model="editCardForm.question">
 
-      <button @click="confirmCardUpdate()">Save</button>
-      <button @click="cancelCardUpdate()">Cancel</button>
+          <p>Answer:</p>
+          <input v-model="editCardForm.answer">
+
+          <button @click="confirmCardUpdate()">Save</button>
+          <button @click="cancelCardUpdate()">Cancel</button>
+        </div>
+
     </div>
   </div>
 </template>

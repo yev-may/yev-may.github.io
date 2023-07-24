@@ -30,27 +30,31 @@ onMounted(() => updateCardToRepeat());
 </script>
 
 <template>
-  <p>Repetition</p>
+  <div class="view">
+    <div class="view_container">
+      <p>Repetition</p>
 
-  <div v-if="cardToRepeat.id">
-    <p>{{ cardToRepeat.question }}</p>
+      <div v-if="cardToRepeat.id">
+        <p>{{ cardToRepeat.question }}</p>
 
-    <div v-if="!answerShown">
-      <button @click="answerShown = true">Show answer</button>
+        <div v-if="!answerShown">
+          <button @click="answerShown = true">Show answer</button>
+        </div>
+
+        <div v-if="answerShown">
+          <p>{{ cardToRepeat.answer }}</p>
+        </div>
+
+        <div v-if="answerShown">
+          <button @click="submitAnswer(true)">Right</button>
+          <button @click="submitAnswer(false)">Wrong</button>
+        </div>
+      </div>
+
+      <div v-if="!cardToRepeat.id">
+        <p>No card to repeat</p>
+      </div>
     </div>
-
-    <div v-if="answerShown">
-      <p>{{ cardToRepeat.answer }}</p>
-    </div>
-
-    <div v-if="answerShown">
-      <button @click="submitAnswer(true)">Right</button>
-      <button @click="submitAnswer(false)">Wrong</button>
-    </div>
-  </div>
-
-  <div v-if="!cardToRepeat.id">
-    <p>No card to repeat</p>
   </div>
 </template>
 
