@@ -21,6 +21,14 @@ html, body, #app {
   height: 100%;
 }
 
+textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: none;
+  font-size: 14px;
+  font-family: Arial, serif;
+}
 
 .view {
   height: 100%;

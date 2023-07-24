@@ -16,17 +16,21 @@ function confirmCardCreation() {
 <template>
   <div class="view">
     <div class="view_container">
+
       <p>Question:</p>
-      <input v-model="cardForm.question">
+      <textarea rows="3" v-model="cardForm.question" />
 
       <p>Answer:</p>
-      <input v-model="cardForm.answer">
+      <textarea rows="3" v-model="cardForm.answer" />
 
       <button @click="confirmCardCreation()">Add</button>
+
     </div>
   </div>
 </template>
 
 <style scoped>
-
+button {
+  margin-top: 10px;
+}
 </style>
