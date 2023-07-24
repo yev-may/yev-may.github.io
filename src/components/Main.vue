@@ -78,7 +78,10 @@ button {
   padding: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 18px;
+  width: 100%;
+  text-align: center;
 }
 button:hover {
   background-color: lightgray;
