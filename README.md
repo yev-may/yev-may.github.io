@@ -1,11 +1,7 @@
-# Remy Offline Web App
-Offline web application for Remy project
+# Remiry Light
 
-To install dependencies run
-```bash
-npm install
-```
-To run application in dev mode run
-```bash
-npm run dev
-```
+---
+
+Web application for studying with
+[Spaced Repetition](https://en.wikipedia.org/wiki/Spaced_repetition)
+technique
