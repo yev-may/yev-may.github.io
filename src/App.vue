@@ -26,6 +26,29 @@ input {
   border: 1px solid black;
 }
 
+button, .button {
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid black;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+}
+
+button:hover, .button:hover {
+  background-color: lightgray;
+  color: black;
+}
+button:active, .button:active {
+  border: 1px solid white;
+  background-color: white;
+  color: black;
+}
+
 textarea {
   width: 100%;
   padding: 10px;

@@ -1,12 +1,25 @@
 <template>
-  <header>
-    <div class="header_container">
-      <button @click="activateTab('repetition')">Repetition</button>
-      <button @click="activateTab('addCard')">Add Card</button>
-      <button @click="activateTab( 'collection')">Collection</button>
-      <button @click="activateTab( 'settings')">Settings</button>
+  <div class="nav_wrapper">
+    <div class="nav_container">
+
+      <nav v-if="!navHidden">
+        <button @click="activateTab('repetition')">Repetition</button>
+        <button @click="activateTab('addCard')">Add Card</button>
+        <button @click="activateTab( 'collection')">Collection</button>
+        <button @click="activateTab( 'settings')">Settings</button>
+      </nav>
+
+      <div class="nav_burger">
+        <button @click="navHidden = !navHidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+        </button>
+      </div>
+
     </div>
-  </header>
+  </div>
+
   <main>
     <Repetition v-if="isActiveTab('repetition')"/>
     <CardForm v-if="isActiveTab('addCard')"/>
@@ -23,6 +36,7 @@ import Settings from "./Settings.vue";
 import {ref} from "vue";
 
 const activeTap = ref("repetition");
+const navHidden = ref(true);
 
 function activateTab(tabName) {
   activeTap.value = tabName;
@@ -34,6 +48,25 @@ function isActiveTab(tabName) {
 </script>
 
 <style>
+.nav_wrapper {
+  background-color: black;
+  padding: 10px;
+}
+
+.nav_container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+nav button {
+  margin-bottom: 5px;
+}
+
+.nav_burger button {
+  padding: 5px;
+}
+
+
 #app {
   display: flex;
   flex-direction: column;
@@ -73,26 +106,5 @@ header {
 .header_container button:active {
   background-color: white;
   border: 1px solid black;
-}
-
-button {
-  margin: 0;
-  border: 1px solid black;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  width: 100%;
-  text-align: center;
-}
-button:hover {
-  background-color: lightgray;
-  color: black;
-}
-button:active {
-  border: 1px solid white;
-  background-color: white;
-  color: black;
 }
 </style>
