@@ -69,6 +69,11 @@ textarea {
   padding: 10px;
 }
 
+.vertical-space-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 .info-alert {
   width: 100%;

@@ -32,7 +32,7 @@ onMounted(() => updateCardToRepeat());
 
 <template>
   <div class="view">
-    <div class="view_container">
+    <div class="view_container vertical-space-between">
 
       <div class="info-alert" v-if="!cardToRepeat.id">
         <p>No cards to repeat</p>
@@ -86,8 +86,11 @@ onMounted(() => updateCardToRepeat());
 }
 
 .answer-result button {
-  width: 245px;
   margin-top: 10px;
+  margin-right: 10px;
+}
+.answer-result button:last-child {
+  margin-right: 0;
 }
 
 .wrong-answer-result {
