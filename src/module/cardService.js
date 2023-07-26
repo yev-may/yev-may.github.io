@@ -1,4 +1,4 @@
-import {getSettings} from "./settingsService";
+import {getDelayForLevel} from "./settingsService";
 
 export function saveCard(card) {
     card.id = generateCardId();
@@ -13,7 +13,7 @@ export function saveCard(card) {
 
 function getFirstNextRepetitionDate() {
     const date = new Date();
-    date.setMinutes(date.getMinutes() + +getSettings()[0]);
+    date.setMinutes(date.getMinutes() + getDelayForLevel(0));
     return date;
 }
 
