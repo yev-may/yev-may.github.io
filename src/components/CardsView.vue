@@ -11,6 +11,7 @@ const pageContent = computed(() => cards.value.slice(
     pageSelected.value * pageSize.value,
     pageSelected.value * pageSize.value + pageSize.value));
 // Edit
+const isEditActive = computed(() => editCardForm.id != null);
 const editCardForm = reactive({
   id: null,
   question: "",
@@ -51,7 +52,7 @@ function formatQuestionPreview(question) {
   <div class="view">
     <div class="view_container">
 
-      <div class="card-view" v-if="!editCardForm.id">
+      <div class="card-view" v-if="!isEditActive">
         <div class="card_preview" v-for="card in pageContent">
           <div class="card_preview_text">
             {{ formatQuestionPreview(card.question) }}
@@ -71,7 +72,7 @@ function formatQuestionPreview(question) {
         </div>
       </div>
 
-      <div class="edit-card_form" v-if="editCardForm.id">
+      <div class="edit-card_form" v-if="isEditActive">
         <p>Question:</p>
         <textarea rows="3" v-model="editCardForm.question"/>
 
