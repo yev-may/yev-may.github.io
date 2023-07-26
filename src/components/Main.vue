@@ -2,13 +2,6 @@
   <div class="nav_wrapper">
     <div class="nav_container">
 
-      <nav v-if="!navHidden">
-        <button @click="activateTab('repetition')">Repetition</button>
-        <button @click="activateTab('addCard')">Add Card</button>
-        <button @click="activateTab( 'collection')">Collection</button>
-        <button @click="activateTab( 'settings')">Settings</button>
-      </nav>
-
       <div class="nav_burger">
         <button @click="navHidden = !navHidden">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -16,6 +9,13 @@
           </svg>
         </button>
       </div>
+
+      <nav v-if="!navHidden">
+        <button @click="activateTab('repetition')">Repetition</button>
+        <button @click="activateTab('addCard')">Add Card</button>
+        <button @click="activateTab( 'collection')">Collection</button>
+        <button @click="activateTab( 'settings')">Settings</button>
+      </nav>
 
     </div>
   </div>
@@ -59,7 +59,7 @@ function isActiveTab(tabName) {
 }
 
 nav button {
-  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .nav_burger button {
