@@ -40,6 +40,7 @@ const navHidden = ref(true);
 
 function activateTab(tabName) {
   activeTap.value = tabName;
+  navHidden.value = true;
 }
 
 function isActiveTab(tabName) {
