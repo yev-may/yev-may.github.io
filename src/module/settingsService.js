@@ -32,7 +32,7 @@ function deserializeToMinutes(serializedValues) {
     return serializedValues.split(" ")
         .map(serializedValue => {
             const timeUnit = serializedValue.slice(serializedValue.length - 1);
-            const value = + serializedValue.slice(0, serializedValue.length - 2);
+            const value = + serializedValue.slice(0, serializedValue.length - 1);
             return value * TIME_UNITS_MULTIPLIERS[timeUnit];
-        })
+        }).reduce((a, b) => a + b, 0);
 }
