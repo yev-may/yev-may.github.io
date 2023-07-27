@@ -1,10 +1,12 @@
 <script setup>
+import Button from "primevue/button";
+import Textarea from "primevue/textarea";
 import {reactive} from "vue";
 import {saveCard} from "../module/cardService";
 
 const cardForm = reactive({
-  question: "question",
-  answer: "answer"
+  question: "",
+  answer: ""
 });
 
 function confirmCardCreation() {
@@ -17,20 +19,26 @@ function confirmCardCreation() {
   <div class="view">
     <div class="view_container">
 
-      <p>Question:</p>
-      <textarea rows="3" v-model="cardForm.question" />
+      <div class="card-side flex justify-content-center">
+        <span class="p-float-label">
+          <Textarea v-model="cardForm.question" rows="3"/>
+          <label>Question</label>
+        </span>
+      </div>
 
-      <p>Answer:</p>
-      <textarea rows="3" v-model="cardForm.answer" />
+      <div class="card-side flex justify-content-center">
+        <span class="p-float-label">
+          <Textarea v-model="cardForm.answer" rows="3"/>
+          <label>Answer</label>
+        </span>
+      </div>
 
-      <button @click="confirmCardCreation()">Add</button>
+      <Button class="btn-panel" label="Add" @click="confirmCardCreation()"/>
 
     </div>
   </div>
 </template>
 
 <style scoped>
-button {
-  margin-top: 10px;
-}
+
 </style>

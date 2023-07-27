@@ -1,4 +1,6 @@
 <script setup>
+import Button from "primevue/button";
+import InputText from "primevue/inputtext";
 import {ref} from "vue";
 import {DEFAULT_SETTINGS, getSettings, saveSettings} from "../module/settingsService";
 
@@ -38,39 +40,35 @@ function updateMaxLevel() {
         <div class="settings-item" v-for="index in maxLevel">
           <div class="settings-item_section">{{ index }}</div>
           <div class="settings-item_section">
-            <input v-model="settings[index - 1]"/>
+            <InputText v-model="settings[index - 1]"/>
           </div>
         </div>
-        <div class="settings-buttons">
-          <button @click="removeLevel()">Remove level</button>
-          <button @click="addLevel()">Add level</button>
+        <div class="inline-buttons">
+          <Button class="inline-btn" label="Remove level" @click="removeLevel()"/>
+          <Button class="inline-btn" label="Add level" @click="addLevel()"/>
         </div>
       </div>
 
-      <button @click="saveSettings(settings)">Save</button>
-      <button @click="confirmSettingsReset()">Reset Default</button>
+      <Button label="Save" @click="saveSettings(settings)"/>
+      <Button label="Reset Default" @click="confirmSettingsReset()"/>
     </div>
   </div>
 </template>
 
 <style scoped>
-.settings {
-
-}
-
 .settings-item {
   display: flex;
   justify-content: center;
 }
 
-.settings-buttons {
+.inline-buttons {
   display: flex;
 }
 
-.settings-buttons button {
+.inline-buttons button {
   margin-right: 10px;
 }
-.settings-buttons button:last-child {
+.inline-buttons button:last-child {
   margin-right: 0;
 }
 

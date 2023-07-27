@@ -1,4 +1,7 @@
 <script setup>
+import Button from "primevue/button";
+import Card from "primevue/card";
+import Textarea from "primevue/textarea";
 import {computed, reactive, ref} from "vue";
 import {deleteCard, getCards, updateCard} from "../module/cardService";
 
@@ -50,96 +53,89 @@ function formatQuestionPreview(question) {
 
 <template>
   <div class="view">
-    <div class="view_container">
 
-      <div class="card-view" v-if="!isEditActive">
-        <div class="card_preview" v-for="card in pageContent">
-          <div class="card_preview_text">
-            {{ formatQuestionPreview(card.question) }}
-          </div>
-          <div class="card_preview_actions">
-            <button class="action_button" @click="selectCardToEdit(card)">E</button>
-            <button class="action_button" @click="confirmCardRemoving(card.id)">X</button>
-          </div>
+    <div class="view_container vertical-space-between" v-if="!isEditActive">
+      <div class="cards">
+        <Card class="card" v-for="card in pageContent">
+          <template #content>
+            <div class="inline-space-between">
+
+              <div class="card-preview_text">
+                {{ formatQuestionPreview(card.question) }}
+              </div>
+
+              <div class="card-actions">
+                <Button icon="pi pi-cog"
+                        @click="selectCardToEdit(card)"/>
+                <Button icon="pi pi-times"
+                        severity="danger"
+                        @click="confirmCardRemoving(card.id)"/>
+              </div>
+            </div>
+          </template>
+        </Card>
+      </div>
+      <div class="pagination-controller">
+        <Button class="pagination-button"
+                v-for="index in totalPages"
+                @click="pageSelected = index - 1"
+                :label="index"/>
+      </div>
+    </div>
+
+    <div class="view_container" v-if="isEditActive">
+      <div class="edit-card_form">
+
+
+        <div class="card-side flex justify-content-center">
+        <span class="p-float-label">
+          <Textarea v-model="editCardForm.question" rows="3"/>
+          <label>Question</label>
+        </span>
         </div>
 
-        <div class="pagination-controller">
-          <button class="pagination-button"
-                  v-for="index in totalPages"
-                  @click="pageSelected = index - 1">
-            {{ index }}
-          </button>
+        <div class="card-side flex justify-content-center">
+        <span class="p-float-label">
+          <Textarea v-model="editCardForm.answer" rows="3"/>
+          <label>Answer</label>
+        </span>
+        </div>
+
+        <div class="btn-panel inline-buttons">
+          <Button label="Save" @click="confirmCardUpdate()"/>
+          <Button label="Cancel" @click="cancelCardUpdate()"/>
         </div>
       </div>
-
-      <div class="edit-card_form" v-if="isEditActive">
-        <p>Question:</p>
-        <textarea rows="3" v-model="editCardForm.question"/>
-
-        <p>Answer:</p>
-        <textarea rows="3" v-model="editCardForm.answer"/>
-
-        <div class="inline-blocks">
-          <button @click="confirmCardUpdate()">Save</button>
-          <button @click="cancelCardUpdate()">Cancel</button>
-        </div>
-      </div>
-
     </div>
   </div>
 </template>
 
 <style scoped>
-.card_preview {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  border: 1px solid black;
-}
-.card_preview:last-child {
-  margin-bottom: 0;
+.card {
+  margin-bottom: 10px;
 }
 
-.card_preview_text {
+.card-preview_text {
   display: flex;
   align-items: center;
-  margin-left: 20px;
 }
 
-.card_preview_actions {
-  display: flex;
-}
-
-.action_button {
-  width: 50px;
-  height: 50px;
-  margin: 5px;
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.inline-blocks {
-  width: 100%;
-  display: flex;
-  margin-top: 10px;
-  justify-content: space-between;
-}
-
-.edit-card_form button {
-  display: inline-block;
-  width: 245px;
+.card-actions > button {
+  margin-left: 10px;
 }
 
 .pagination-controller {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .pagination-button {
-  height: 50px;
-  width: 50px;
-  margin: 5px;
+  width: 37px;
+  margin-right: 10px;
+}
+.pagination-button:last-child {
+  margin-right: 0;
 }
 </style>

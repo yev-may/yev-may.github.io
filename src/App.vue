@@ -26,29 +26,6 @@ input {
   border: 1px solid black;
 }
 
-button, .button {
-  box-sizing: border-box;
-  margin: 0;
-  border: 1px solid black;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  width: 100%;
-  text-align: center;
-}
-
-button:hover, .button:hover {
-  background-color: lightgray;
-  color: black;
-}
-button:active, .button:active {
-  border: 1px solid white;
-  background-color: white;
-  color: black;
-}
-
 textarea {
   width: 100%;
   padding: 10px;
@@ -57,6 +34,11 @@ textarea {
   font-size: 14px;
   font-family: Arial, serif;
 }
+
+button {
+  width: 100%;
+}
+
 
 .view {
   height: 100%;
@@ -75,10 +57,29 @@ textarea {
   justify-content: space-between;
 }
 
-.info-alert {
-  width: 100%;
-  border: 1px solid black;
-  padding: 15px 0;
-  text-align: center;
+
+.card-side {
+  margin-top: 25px;
+}
+
+
+.inline-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inline-buttons {
+  display: flex;
+}
+
+.inline-buttons button {
+  margin-right: 10px;
+}
+.inline-buttons button:last-child {
+  margin-right: 0;
+}
+
+.btn-panel {
+  margin-top: 15px;
 }
 </style>

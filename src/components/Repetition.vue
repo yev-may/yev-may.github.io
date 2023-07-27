@@ -1,4 +1,7 @@
 <script setup>
+import Button from "primevue/button";
+import Card from "primevue/card";
+import Divider from 'primevue/divider';
 import {onMounted, reactive, ref} from "vue";
 import {getCardToRepeat, submitRightAnswer, submitWrongAnswer} from "../module/repetitionService";
 
@@ -34,26 +37,31 @@ onMounted(() => updateCardToRepeat());
   <div class="view">
     <div class="view_container vertical-space-between">
 
-      <div class="info-alert" v-if="!cardToRepeat.id">
-        <p>No cards to repeat</p>
-      </div>
+      <Card v-if="!cardToRepeat.id">
+        <template #content>
+          <p>No cards to repeat</p>
+        </template>
+      </Card>
 
-      <div class="card" v-if="cardToRepeat.id">
-        <div class="card-side card-question">
-          <p>{{ cardToRepeat.question }}</p>
-        </div>
-        <div class="card-side card-answer" v-if="answerShown">
-          <p>{{ cardToRepeat.answer }}</p>
-        </div>
-      </div>
+      <Card v-if="cardToRepeat.id">
+        <template #content>
+          <div class="card-side card-question">
+            <p>{{ cardToRepeat.question }}</p>
+          </div>
+          <div class="card-side card-answer" v-if="answerShown">
+            <Divider/>
+            <p>{{ cardToRepeat.answer }}</p>
+          </div>
+        </template>
+      </Card>
 
-      <div class="card-controller" v-if="cardToRepeat.id">
-        <div class="card-controller_section show-answer" v-if="!answerShown">
-          <button @click="answerShown = true">Show answer</button>
+      <div class="card-action" v-if="cardToRepeat.id">
+        <div class="card-action_section" v-if="!answerShown">
+          <Button label="Show answer" @click="answerShown = true" />
         </div>
-        <div class="card-controller_section answer-result" v-if="answerShown">
-          <button class="wrong-answer-result" @click="submitAnswer(false)">Wrong</button>
-          <button class="right-answer-result" @click="submitAnswer(true)">Right</button>
+        <div class="inline-buttons answer-result" v-if="answerShown">
+          <Button label="Wrong" class="wrong-answer-result" @click="submitAnswer(false)"/>
+          <Button label="Right" class="right-answer-result" @click="submitAnswer(true)"/>
         </div>
       </div>
 
@@ -62,37 +70,6 @@ onMounted(() => updateCardToRepeat());
 </template>
 
 <style scoped>
-.card-side {
-  text-align: center;
-  border: 1px solid black;
-  padding: 15px;
-}
-.card-question {
-
-}
-.card-answer {
-  border-top: 0;
-}
-
-.card-controller_section {
-  display: flex;
-  justify-content: space-between;
-}
-
-.show-answer button {
-  margin-top: 10px;
-  width: 100%;
-  text-align: center;
-}
-
-.answer-result button {
-  margin-top: 10px;
-  margin-right: 10px;
-}
-.answer-result button:last-child {
-  margin-right: 0;
-}
-
 .wrong-answer-result {
   background-color: #FFEDED;
 }
