@@ -1,18 +1,3 @@
-<template>
-  <div class="nav_wrapper">
-    <div class="nav_container">
-      <SplitButton class="nav_selector" :label="activeTapLabel" :model="navItems"></SplitButton>
-    </div>
-  </div>
-
-  <main>
-    <Repetition v-if="isActiveTab('repetition')"/>
-    <CardForm v-if="isActiveTab('addCard')"/>
-    <CardsView v-if="isActiveTab('collection')"/>
-    <Settings v-if="isActiveTab('settings')"/>
-  </main>
-</template>
-
 <script setup>
 import SplitButton from "primevue/splitbutton";
 import CardForm from "./CardForm.vue";
@@ -49,6 +34,21 @@ function isActiveTab(tabName) {
   return activeTab.value === tabName;
 }
 </script>
+
+<template>
+  <div class="nav_wrapper">
+    <div class="nav_container">
+      <SplitButton class="nav_selector" :label="activeTapLabel" :model="navItems"></SplitButton>
+    </div>
+  </div>
+
+  <main>
+    <Repetition v-if="isActiveTab('repetition')"/>
+    <CardForm v-if="isActiveTab('addCard')"/>
+    <CardsView v-if="isActiveTab('collection')"/>
+    <Settings v-if="isActiveTab('settings')"/>
+  </main>
+</template>
 
 <style>
 #app {
